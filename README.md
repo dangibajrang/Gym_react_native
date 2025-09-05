@@ -1,301 +1,326 @@
-# 🏋️‍♂️ GymApp - Complete Gym Management System
+# 🏋️‍♂️ GymApp - Complete Gym Management Platform
 
-A comprehensive gym management platform with mobile app for members and web admin panel for staff management.
+A comprehensive gym management platform built with modern technologies, featuring a mobile app for members, web admin panel for management, and a robust backend API.
 
-## 🚀 Features
+## 🌟 Features
 
-### 📱 Mobile App (React Native)
+### 📱 Mobile App (React Native + Expo)
 - **User Authentication**: Secure login/register with JWT
-- **Class Booking**: Browse and book fitness classes
-- **Workout Tracking**: Log workouts and track progress
-- **Social Features**: Community feed and member interactions
+- **Class Management**: Browse, search, and book fitness classes
+- **Workout Tracking**: Log and track personal workouts
+- **Social Features**: Create posts, interact with community
 - **Subscription Management**: View and manage membership plans
-- **Push Notifications**: Class reminders and updates
+- **Notifications**: Real-time updates and reminders
 - **Profile Management**: Update personal information and preferences
 
-### 💻 Web Admin Panel (React.js)
-- **Dashboard**: Real-time analytics and key metrics
-- **User Management**: Manage members, trainers, and staff accounts
-- **Class Management**: Create, edit, and schedule fitness classes
+### 💻 Web Admin Panel (React + Vite)
+- **Dashboard**: Comprehensive analytics and metrics
+- **User Management**: Manage members, trainers, and admins
+- **Class Management**: Create, edit, and manage fitness classes
 - **Booking Management**: View and manage class bookings
-- **Subscription Management**: Handle membership plans and billing
+- **Subscription Management**: Handle membership plans and payments
 - **Analytics**: Detailed reports and insights
-- **Staff Management**: Role-based access control
+- **Real-time Updates**: Live data synchronization
 
-### 🔧 Backend (Express.js + MongoDB)
-- **RESTful API**: Complete API for all operations
-- **Authentication**: JWT-based security with role-based access
+### 🔧 Backend API (Node.js + Express + MongoDB)
+- **RESTful API**: Complete CRUD operations for all entities
+- **Authentication & Authorization**: JWT-based with role-based access
 - **Real-time Features**: Socket.io for live updates
-- **Database**: MongoDB with Mongoose ODM
-- **Security**: Rate limiting, CORS, helmet protection
-- **File Upload**: Image and document handling
-
-## 🏗️ Architecture
-
-```
-GymApp/
-├── backend/           # Express.js API server
-├── mobile-app/        # React Native mobile app
-├── web-admin/         # React.js admin panel
-├── shared/           # Shared types and utilities
-└── docs/             # Documentation
-```
-
-## 🛠️ Tech Stack
-
-### Backend
-- **Node.js** with **Express.js**
-- **TypeScript** for type safety
-- **MongoDB** with **Mongoose**
-- **JWT** for authentication
-- **Socket.io** for real-time features
-- **Multer** for file uploads
-- **Helmet**, **CORS**, **Rate Limiting** for security
-
-### Mobile App
-- **React Native** with **Expo**
-- **TypeScript** for type safety
-- **Redux Toolkit** for state management
-- **React Navigation** for routing
-- **NativeWind** (Tailwind CSS) for styling
-- **Expo SecureStore** for secure storage
-
-### Web Admin
-- **React.js** with **Vite**
-- **TypeScript** for type safety
-- **Redux Toolkit** for state management
-- **React Router** for routing
-- **Tailwind CSS** for styling
-- **Axios** for API calls
-- **Recharts** for analytics
+- **Payment Integration**: Stripe for subscription management
+- **AI Features**: Personalized recommendations and insights
+- **File Upload**: Image and video handling
+- **Advanced Analytics**: ML-powered insights and predictions
+- **Wearable Integration**: Fitness tracker data synchronization
 
 ## 🚀 Quick Start
 
 ### Prerequisites
-- Node.js (v18 or higher)
+- Node.js 18+ 
 - MongoDB (local or Atlas)
-- Expo CLI (for mobile development)
+- npm or yarn
 
-### 1. Clone the Repository
+### Automated Setup
 ```bash
+# Clone the repository
 git clone <repository-url>
 cd GymApp
+
+# Run the setup script
+./setup.sh
 ```
 
-### 2. Backend Setup
-```bash
-cd backend
-npm install
-cp .env.example .env
-# Edit .env with your MongoDB URI and other settings
-npm run dev
-```
+### Manual Setup
 
-### 3. Mobile App Setup
-```bash
-cd mobile-app
-npm install
-npm start
-# Use Expo Go app to scan QR code
-```
-
-### 4. Web Admin Setup
-```bash
-cd web-admin
-npm install
-cp .env.example .env
-# Edit .env with your API URL
-npm run dev
-```
-
-## 📋 API Endpoints
-
-### Authentication
-- `POST /api/auth/register` - User registration
-- `POST /api/auth/login` - User login
-- `GET /api/auth/profile` - Get user profile
-- `PUT /api/auth/profile` - Update profile
-- `PUT /api/auth/change-password` - Change password
-
-### Users (Admin/Staff)
-- `GET /api/users` - Get all users
-- `GET /api/users/:id` - Get user by ID
-- `PUT /api/users/:id` - Update user
-- `DELETE /api/users/:id` - Delete user
-- `PUT /api/users/:id/status` - Update user status
-
-### Classes
-- `GET /api/classes` - Get all classes
-- `GET /api/classes/:id` - Get class by ID
-- `POST /api/classes` - Create class (Admin/Trainer)
-- `PUT /api/classes/:id` - Update class
-- `DELETE /api/classes/:id` - Delete class (Admin)
-- `GET /api/classes/:id/bookings` - Get class bookings
-
-### Bookings
-- `GET /api/bookings` - Get all bookings
-- `POST /api/bookings` - Create booking
-- `PUT /api/bookings/:id/status` - Update booking status
-- `PUT /api/bookings/:id/cancel` - Cancel booking
-- `GET /api/bookings/stats/overview` - Get booking statistics
-
-### Subscriptions
-- `GET /api/subscriptions` - Get all subscriptions (Admin/Staff)
-- `GET /api/subscriptions/current/user` - Get current user subscription
-- `POST /api/subscriptions` - Create subscription (Admin)
-- `PUT /api/subscriptions/:id` - Update subscription
-- `PUT /api/subscriptions/:id/cancel` - Cancel subscription
-- `GET /api/subscriptions/stats/overview` - Get subscription statistics
-
-### Workouts
-- `GET /api/workouts` - Get user workouts
-- `POST /api/workouts` - Create workout
-- `PUT /api/workouts/:id` - Update workout
-- `DELETE /api/workouts/:id` - Delete workout
-- `GET /api/workouts/progress/overview` - Get workout progress
-
-### Social Features
-- `GET /api/posts` - Get social feed
-- `POST /api/posts` - Create post
-- `POST /api/posts/:id/like` - Like/unlike post
-- `POST /api/posts/:id/comments` - Add comment
-- `GET /api/posts/user/:userId` - Get user posts
-
-### Notifications
-- `GET /api/notifications` - Get user notifications
-- `PUT /api/notifications/:id/read` - Mark as read
-- `PUT /api/notifications/read-all` - Mark all as read
-- `POST /api/notifications/broadcast` - Broadcast notifications (Admin/Staff)
-
-## 📚 Documentation
-
-- [API Documentation](docs/API_DOCUMENTATION.md) - Complete API reference with examples
-- [Development Guide](docs/DEVELOPMENT_GUIDE.md) - Development setup and guidelines
-- [Deployment Guide](docs/DEPLOYMENT_GUIDE.md) - Production deployment instructions
-
-### Analytics
-- `GET /api/analytics/dashboard` - Get dashboard statistics
-- `GET /api/analytics/revenue` - Get revenue data
-- `GET /api/analytics/classes` - Get class analytics
-- `GET /api/analytics/members` - Get member analytics
-
-## 🔐 Authentication & Authorization
-
-### User Roles
-- **Member**: Can book classes, track workouts, manage profile
-- **Trainer**: Can create classes, view bookings, manage schedule
-- **Staff**: Can manage users, view analytics, handle support
-- **Admin**: Full access to all features and settings
-
-### JWT Token Structure
-```json
-{
-  "userId": "user_id",
-  "email": "user@example.com",
-  "role": "member|trainer|staff|admin",
-  "iat": 1234567890,
-  "exp": 1234567890
-}
-```
-
-## 📊 Database Models
-
-### User
-- Personal information (name, email, phone, etc.)
-- Role and status
-- Profile image and preferences
-- Emergency contact and medical conditions
-
-### Class
-- Class details (name, description, type, duration)
-- Trainer assignment
-- Schedule and capacity
-- Location and requirements
-
-### Booking
-- User and class references
-- Booking date and status
-- Payment information
-- Check-in/check-out times
-
-### Subscription
-- User and plan information
-- Billing cycle and pricing
-- Features and limitations
-- Payment method and status
-
-## 🎨 UI/UX Features
-
-### Mobile App
-- **Modern Design**: Clean, intuitive interface
-- **Dark/Light Mode**: User preference support
-- **Offline Support**: Basic functionality without internet
-- **Push Notifications**: Real-time updates
-- **Gesture Navigation**: Smooth user experience
-
-### Web Admin
-- **Responsive Design**: Works on all screen sizes
-- **Dashboard Analytics**: Visual charts and metrics
-- **Data Tables**: Sortable, filterable, paginated
-- **Real-time Updates**: Live data synchronization
-- **Role-based UI**: Different views for different roles
-
-## 🔧 Development
-
-### Code Structure
-- **Modular Architecture**: Separated concerns
-- **Type Safety**: Full TypeScript implementation
-- **Error Handling**: Comprehensive error management
-- **Validation**: Input validation and sanitization
-- **Testing**: Unit and integration tests
-
-### Environment Variables
+1. **Install Dependencies**
 ```bash
 # Backend
-PORT=3001
-MONGODB_URI=mongodb://localhost:27017/gymapp
-JWT_SECRET=your-secret-key
-JWT_EXPIRES_IN=7d
-CORS_ORIGIN=http://localhost:3000,http://localhost:3001
+cd backend
+npm install
 
 # Web Admin
-VITE_API_URL=http://localhost:3001
-VITE_APP_NAME=Gym Admin Panel
+cd ../web-admin
+npm install
+
+# Mobile App
+cd ../mobile-app
+npm install
+```
+
+2. **Environment Configuration**
+```bash
+# Copy environment templates
+cp backend/env.example backend/.env
+cp web-admin/env.example web-admin/.env
+cp mobile-app/env.example mobile-app/.env
+
+# Update with your configuration
+```
+
+3. **Database Setup**
+```bash
+# Start MongoDB (if local)
+mongod
+
+# Seed the database (optional)
+cd backend
+npm run seed
+```
+
+4. **Start Applications**
+```bash
+# Backend (Terminal 1)
+cd backend
+npm run dev
+
+# Web Admin (Terminal 2)
+cd web-admin
+npm run dev
+
+# Mobile App (Terminal 3)
+cd mobile-app
+npm start
+```
+
+## 📁 Project Structure
+
+```
+GymApp/
+├── backend/                 # Node.js + Express API
+│   ├── src/
+│   │   ├── controllers/     # Route controllers
+│   │   ├── middleware/      # Custom middleware
+│   │   ├── models/          # MongoDB models
+│   │   ├── routes/          # API routes
+│   │   ├── services/        # Business logic
+│   │   ├── utils/           # Utility functions
+│   │   └── server.ts        # Main server file
+│   ├── uploads/             # File uploads
+│   └── package.json
+├── mobile-app/              # React Native + Expo
+│   ├── src/
+│   │   ├── components/      # Reusable components
+│   │   ├── screens/         # App screens
+│   │   ├── services/        # API services
+│   │   ├── store/           # Redux store
+│   │   ├── types/           # TypeScript types
+│   │   └── utils/           # Utility functions
+│   └── package.json
+├── web-admin/               # React + Vite
+│   ├── src/
+│   │   ├── components/      # Reusable components
+│   │   ├── pages/           # Admin pages
+│   │   ├── services/        # API services
+│   │   ├── store/           # Redux store
+│   │   ├── types/           # TypeScript types
+│   │   └── utils/           # Utility functions
+│   └── package.json
+├── shared/                  # Shared types and utilities
+├── docs/                    # Documentation
+└── README.md
+```
+
+## 🔧 Configuration
+
+### Backend Environment Variables
+```env
+PORT=3001
+NODE_ENV=development
+MONGODB_URI=mongodb://localhost:27017/gymapp
+JWT_SECRET=your-super-secret-jwt-key
+STRIPE_SECRET_KEY=sk_test_your_stripe_key
+```
+
+### Web Admin Environment Variables
+```env
+VITE_API_URL=http://localhost:3001/api
+VITE_APP_NAME=GymApp Admin
+```
+
+### Mobile App Environment Variables
+```env
+EXPO_PUBLIC_API_URL=http://localhost:3001/api
+EXPO_PUBLIC_APP_NAME=GymApp
+```
+
+## 📊 Database Schema
+
+### Core Models
+- **User**: Members, trainers, admins with role-based access
+- **Class**: Fitness classes with schedules and capacity
+- **Booking**: Class reservations and attendance
+- **Workout**: Personal workout tracking
+- **Subscription**: Membership plans and billing
+- **Post**: Social media features
+- **Notification**: Real-time messaging
+
+### Key Relationships
+- Users can book multiple classes
+- Classes have multiple bookings
+- Users can have subscriptions
+- Users can create posts and workouts
+
+## 🔐 Authentication & Security
+
+- **JWT-based Authentication**: Secure token-based auth
+- **Role-based Access Control**: Admin, Trainer, Member roles
+- **Password Hashing**: bcrypt for secure password storage
+- **Input Validation**: Comprehensive data validation
+- **Rate Limiting**: API protection against abuse
+- **CORS Configuration**: Secure cross-origin requests
+
+## 💳 Payment Integration
+
+- **Stripe Integration**: Secure payment processing
+- **Subscription Management**: Automated billing cycles
+- **Webhook Handling**: Real-time payment updates
+- **Refund Processing**: Automated refund handling
+
+## 🤖 AI Features
+
+- **Personalized Recommendations**: AI-powered class suggestions
+- **Workout Optimization**: Smart workout planning
+- **Progress Tracking**: ML-based progress analysis
+- **Predictive Analytics**: Member retention insights
+
+## 📱 Mobile App Features
+
+### Screens Implemented
+- **Authentication**: Login, Register, Forgot Password
+- **Dashboard**: Overview of activities and stats
+- **Classes**: Browse, search, and book classes
+- **Class Details**: Detailed class information
+- **My Bookings**: Manage class reservations
+- **Workouts**: Track personal workouts
+- **Log Workout**: Add new workout sessions
+- **Social**: Community posts and interactions
+- **Profile**: User profile management
+- **Settings**: App preferences and configuration
+
+### Key Features
+- **Offline Support**: Works without internet connection
+- **Push Notifications**: Real-time updates
+- **Dark Mode**: Theme customization
+- **Accessibility**: Screen reader support
+- **Performance**: Optimized for smooth experience
+
+## 🖥️ Web Admin Features
+
+### Pages Implemented
+- **Dashboard**: Analytics and key metrics
+- **Users**: Member and staff management
+- **Classes**: Class creation and management
+- **Bookings**: Reservation management
+- **Subscriptions**: Membership plan management
+- **Analytics**: Detailed reporting
+- **Profile**: Admin profile management
+
+### Key Features
+- **Real-time Updates**: Live data synchronization
+- **Responsive Design**: Works on all devices
+- **Advanced Filtering**: Powerful search and filter options
+- **Bulk Operations**: Mass data management
+- **Export Features**: Data export capabilities
+
+## 🧪 Testing
+
+```bash
+# Backend tests
+cd backend
+npm test
+
+# Web admin tests
+cd web-admin
+npm test
+
+# Mobile app tests
+cd mobile-app
+npm test
 ```
 
 ## 🚀 Deployment
 
-### Backend (Railway/Render/Heroku)
-1. Connect your repository
-2. Set environment variables
-3. Deploy automatically
+### Backend Deployment
+```bash
+# Build for production
+cd backend
+npm run build
 
-### Mobile App (Expo)
-1. Build with `expo build`
-2. Submit to app stores
-3. Use OTA updates for quick fixes
+# Deploy to your preferred platform
+# (Heroku, AWS, DigitalOcean, etc.)
+```
 
-### Web Admin (Vercel/Netlify)
-1. Connect repository
-2. Set build settings
-3. Deploy with automatic CI/CD
+### Web Admin Deployment
+```bash
+# Build for production
+cd web-admin
+npm run build
 
-## 📈 Future Enhancements
+# Deploy to Vercel, Netlify, or your preferred platform
+```
 
-### Planned Features
-- **Payment Integration**: Stripe/PayPal support
-- **AI Recommendations**: Personalized workout suggestions
-- **Video Streaming**: Live and recorded classes
-- **Wearable Integration**: Fitness tracker sync
-- **Multi-language**: Internationalization support
-- **Advanced Analytics**: Machine learning insights
+### Mobile App Deployment
+```bash
+# Build for production
+cd mobile-app
+expo build:android
+expo build:ios
 
-### Scalability
-- **Microservices**: Break down into smaller services
-- **Caching**: Redis for performance
-- **CDN**: Static asset delivery
-- **Load Balancing**: Handle high traffic
-- **Database Sharding**: Scale data storage
+# Or use EAS Build
+eas build --platform all
+```
+
+## 📈 Performance Optimization
+
+- **Code Splitting**: Lazy loading for better performance
+- **Image Optimization**: Compressed and optimized images
+- **Caching**: Redis for API response caching
+- **Database Indexing**: Optimized MongoDB queries
+- **CDN Integration**: Fast content delivery
+
+## 🔧 Development
+
+### Code Style
+- **ESLint**: Code linting and formatting
+- **Prettier**: Code formatting
+- **TypeScript**: Type safety across all projects
+- **Husky**: Git hooks for code quality
+
+### Git Workflow
+```bash
+# Feature development
+git checkout -b feature/new-feature
+git commit -m "Add new feature"
+git push origin feature/new-feature
+
+# Create pull request for review
+```
+
+## 📚 Documentation
+
+- [API Documentation](docs/API_DOCUMENTATION.md)
+- [Deployment Guide](docs/DEPLOYMENT_GUIDE.md)
+- [Development Guide](docs/DEVELOPMENT_GUIDE.md)
+- [Advanced Features](docs/ADVANCED_FEATURES.md)
 
 ## 🤝 Contributing
 
@@ -311,18 +336,37 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## 🆘 Support
 
-For support and questions:
-- Create an issue on GitHub
-- Check the documentation
-- Contact the development team
+- **Issues**: Report bugs and request features on GitHub
+- **Documentation**: Check the docs folder for detailed guides
+- **Community**: Join our Discord server for help and discussions
+
+## 🎯 Roadmap
+
+### Upcoming Features
+- [ ] Video streaming for online classes
+- [ ] Advanced analytics dashboard
+- [ ] Multi-language support
+- [ ] Apple Watch integration
+- [ ] Nutrition tracking
+- [ ] Group challenges
+- [ ] Live chat support
+
+### Performance Improvements
+- [ ] GraphQL API
+- [ ] Microservices architecture
+- [ ] Advanced caching strategies
+- [ ] Database optimization
 
 ## 🙏 Acknowledgments
 
 - React Native and Expo teams
 - Express.js and Node.js communities
-- MongoDB and Mongoose documentation
-- All contributors and testers
+- MongoDB and Mongoose teams
+- Stripe for payment processing
+- All open-source contributors
 
 ---
 
-**Built with ❤️ for the fitness community**
+**Built with ❤️ by the GymApp Team**
+
+For more information, visit our [documentation](docs/) or contact us at support@gymapp.com
